@@ -1,21 +1,26 @@
 { config, pkgs, plover-flake, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  # ============================================================================
+  # Basic Home Manager Configuration
+  # ============================================================================
+  
+  # User identification and basic setup
   home.username = "kaidong";
   home.homeDirectory = "/home/kaidong";
+  home.stateVersion = "25.05";
+  
+  # Enable generic Linux compatibility (non-NixOS)
   targets.genericLinux.enable = true;
+  
+  # Self-manage Home Manager
+  programs.home-manager.enable = true;
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
-
+  # ============================================================================
+  # Package Overlays
+  # ============================================================================
+  
+  # Add Emacs overlay for bleeding-edge Emacs builds
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
@@ -23,81 +28,57 @@
     }))
   ];
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+  # ============================================================================
+  # System Packages
+  # ============================================================================
+  
+  # Packages installed to user environment
   home.packages = [
-    pkgs.emacs-git
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    pkgs.emacs-git  # Latest Emacs from overlay
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/kaidong/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
+  # ============================================================================
+  # Program Configuration
+  # ============================================================================
+  
+  # Stenography setup with Plover
   programs.plover = {
     enable = true;
-
+    
+    # Use plover package with additional plugins
     package = plover-flake.packages.${pkgs.system}.plover.withPlugins (
       ps: with ps; [
-        plover-lapwing-aio
+        plover-lapwing-aio  # Lapwing stenography theory
       ]
     );
 
+    # Plover configuration settings
     settings = {
       "Machine Configuration" = {
-        machine_type = "Gemini PR";
-        auto_start = true;
+        machine_type = "Gemini PR";  # Stenotype machine type
+        auto_start = true;           # Start automatically
       };
-      "Output Configuration".undo_levels = 100;
+      "Output Configuration".undo_levels = 100;  # Undo history depth
     };
+  };
+
+  # ============================================================================
+  # File Management
+  # ============================================================================
+  
+  # Managed dotfiles and configuration files
+  home.file = {
+    # Add custom dotfiles here as needed
+    # Example: ".screenrc".source = ./dotfiles/screenrc;
+  };
+
+  # ============================================================================
+  # Environment Variables
+  # ============================================================================
+  
+  # Session-wide environment variables
+  home.sessionVariables = {
+    # Add environment variables here as needed
+    # Example: EDITOR = "emacs";
   };
 }
