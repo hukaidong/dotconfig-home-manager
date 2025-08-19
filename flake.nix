@@ -26,7 +26,7 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       # System architecture configuration
-      system = "aarch64-darwin";
+      system = "x86_64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -37,7 +37,6 @@
         # Configuration modules
         modules = [ 
           ./home.nix                            # Main home configuration
-          plover-flake.homeManagerModules.plover # Plover stenography module
         ];
 
         # Pass flake inputs to home.nix for access to custom packages/configs

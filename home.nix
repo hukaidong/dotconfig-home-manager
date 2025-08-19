@@ -7,11 +7,8 @@
   
   # User identification and basic setup
   home.username = "kaidong";
-  home.homeDirectory = "/Volumes/Storage/Users/kaidong";
+  home.homeDirectory = "/Users/kaidong";
   home.stateVersion = "25.05";
-  
-  # Enable generic Linux compatibility (non-NixOS)
-  targets.genericLinux.enable = true;
   
   # Self-manage Home Manager
   programs.home-manager.enable = true;
@@ -24,7 +21,7 @@
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-      sha256 = "sha256:0pain4dpyc9bgi5kffix2nfrqp0c1f19na08yf7g6lazw3l059n2";
+      sha256 = "sha256:0q6jcqyxgsgrk1pqiq68fdb58waf0mbd7cs9lnrqn9qg2bd4yzhy";
     }))
   ];
 
