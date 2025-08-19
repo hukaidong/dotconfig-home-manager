@@ -17,19 +17,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";  # Use same nixpkgs version
     };
-    
-    # Stenography tools and configuration
-    plover-flake.url = "github:openstenoproject/plover-flake";
   };
 
   # ============================================================================
   # Output Configuration
   # ============================================================================
   
-  outputs = { nixpkgs, home-manager, plover-flake, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       # System architecture configuration
-      system = "x86_64-linux";
+      system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -45,7 +42,6 @@
 
         # Pass flake inputs to home.nix for access to custom packages/configs
         extraSpecialArgs = {
-          inherit plover-flake;
         };
       };
     };

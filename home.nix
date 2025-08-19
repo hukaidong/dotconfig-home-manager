@@ -1,4 +1,4 @@
-{ config, pkgs, plover-flake, ... }:
+{ config, pkgs, ... }:
 
 {
   # ============================================================================
@@ -7,7 +7,7 @@
   
   # User identification and basic setup
   home.username = "kaidong";
-  home.homeDirectory = "/home/kaidong";
+  home.homeDirectory = "/Volumes/Storage/Users/kaidong";
   home.stateVersion = "25.05";
   
   # Enable generic Linux compatibility (non-NixOS)
@@ -41,27 +41,7 @@
   # Program Configuration
   # ============================================================================
   
-  # Stenography setup with Plover
-  programs.plover = {
-    enable = true;
-    
-    # Use plover package with additional plugins
-    package = plover-flake.packages.${pkgs.system}.plover.withPlugins (
-      ps: with ps; [
-        plover-lapwing-aio  # Lapwing stenography theory
-        plover-clippy-2
-      ]
-    );
 
-    # Plover configuration settings
-    settings = {
-      "Machine Configuration" = {
-        machine_type = "Gemini PR";  # Stenotype machine type
-        auto_start = true;           # Start automatically
-      };
-      "Output Configuration".undo_levels = 100;  # Undo history depth
-    };
-  };
 
   # ============================================================================
   # File Management
@@ -69,8 +49,16 @@
   
   # Managed dotfiles and configuration files
   home.file = {
-    # Add custom dotfiles here as needed
-    # Example: ".screenrc".source = ./dotfiles/screenrc;
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
   };
 
   # ============================================================================
