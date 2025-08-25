@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # ============================================================================
@@ -64,6 +64,12 @@
     };
     sessionVariables = {
     };
+    initContent = lib.mkOrder 550 ''
+      # Nix environment initialization for macOS
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+    '';
   };
 
   programs.gh = {
@@ -82,6 +88,7 @@
     ];
     ignores = [
       ".localfiles"
+      ".claude"
       "*~"
       "*.swp"
     ];
@@ -115,6 +122,6 @@
   };
 
   home.sessionPath = [
-    /Users/kaidong/bin/
+    "/Users/kaidong/bin"
   ];
 }
