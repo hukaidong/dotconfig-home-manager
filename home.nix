@@ -41,15 +41,90 @@
 
   # Packages installed to user environment
   home.packages = with pkgs; [
-    emacs-git
+    zsh
+    oh-my-zsh
+
+    emacs-git # Latest Emacs from overlay
+    docker
+    devcontainer
     texliveFull
-    nixfmt-rfc-style
+
+    bat
+    gh
+    git
+    nixfmt
+
+    python313
+    python313Packages.pip
   ];
 
   # ============================================================================
   # Program Configuration
   # ============================================================================
 
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+    };
+    shellAliases = {
+      vim = "nvim";
+    };
+    sessionVariables = {
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Kaidong Hu";
+    userEmail = "hukaidonghkd@gmail.com";
+    attributes = [
+      "*.lock diff=binary"
+    ];
+    ignores = [
+      # IntelliJ project files
+      ".idea"
+      ".idea/*"
+      ".iml"
+      "out"
+      "gen"
+
+      # Vim
+      "*~"
+      "*.swp"
+      "tags"
+
+      # R
+      ".RData"
+      ".Rhistory"
+
+      # Ruby yard
+      ".yardoc"
+
+      # Local files / runtimes
+      ".localfiles"
+      ".lvimrc"
+      ".envrc"
+
+      # Git merges
+      "*.orgi"
+
+      # Claude
+      ".claude"
+    ];
+    extraConfig = {
+      diff.tool = "nvimdiff";
+      merge.tool = "nvimdiff";
+    };
+  };
   # Stenography setup with Plover
   programs.plover = {
     enable = true;
@@ -146,7 +221,11 @@
 
   # Session-wide environment variables
   home.sessionVariables = {
-    # Add environment variables here as needed
-    # Example: EDITOR = "emacs";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
+
+  home.sessionPath = [
+    "/home/kaidong/bin"
+  ];
 }
