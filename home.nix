@@ -30,6 +30,10 @@
 
   # Add Emacs overlay for bleeding-edge Emacs builds
   nixpkgs.overlays = [ emacs-overlay.overlays.default ];
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = (_: true);
+  };
 
   # ============================================================================
   # System Packages
@@ -46,6 +50,7 @@
 
     anki
     keepassxc
+    claude-code
 
     python313
     python313Packages.pip
