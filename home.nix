@@ -41,6 +41,7 @@
     devcontainer
     texliveFull
 
+    anki
     bat
     nixfmt-rfc-style
 
