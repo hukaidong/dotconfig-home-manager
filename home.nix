@@ -114,7 +114,7 @@
       ".envrc"
 
       # Git merges
-      "*.orgi"
+      "*.orig"
 
       # Claude
       ".claude"
