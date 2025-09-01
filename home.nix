@@ -42,11 +42,16 @@
     texliveFull
 
     bat
-    gh
     nixfmt-rfc-style
 
     python313
     python313Packages.pip
+
+    # require by kickstart.nvim
+    gcc
+    gnumake
+    unzip
+    ripgrep
   ];
 
   # ============================================================================
@@ -60,6 +65,7 @@
 
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
