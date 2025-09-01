@@ -41,6 +41,7 @@
 
   # Packages installed to user environment
   home.packages = with pkgs; [
+    jq
     bat
     nixfmt-rfc-style
 
