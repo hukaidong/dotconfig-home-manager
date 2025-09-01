@@ -2,6 +2,7 @@
   config,
   pkgs,
   plover-flake,
+  emacs-overlay,
   ...
 }:
 
@@ -9,6 +10,8 @@
   # ============================================================================
   # Basic Home Manager Configuration
   # ============================================================================
+
+  imports = [ plover-flake.homeManagerModules.plover ];
 
   # User identification and basic setup
   home.username = "kaidong";
@@ -26,14 +29,7 @@
   # ============================================================================
 
   # Add Emacs overlay for bleeding-edge Emacs builds
-  nixpkgs.overlays = [
-    (import (
-      builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-        sha256 = "sha256:0pain4dpyc9bgi5kffix2nfrqp0c1f19na08yf7g6lazw3l059n2";
-      }
-    ))
-  ];
+  nixpkgs.overlays = [ emacs-overlay.overlays.default ];
 
   # ============================================================================
   # System Packages
@@ -41,18 +37,13 @@
 
   # Packages installed to user environment
   home.packages = with pkgs; [
-    zsh
-    oh-my-zsh
-
-    emacs-git # Latest Emacs from overlay
     docker
     devcontainer
     texliveFull
 
     bat
     gh
-    git
-    nixfmt
+    nixfmt-rfc-style
 
     python313
     python313Packages.pip
@@ -62,17 +53,18 @@
   # Program Configuration
   # ============================================================================
 
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-git;
+  };
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
     };
-    shellAliases = {
-      vim = "nvim";
-    };
-    sessionVariables = {
-    };
+    sessionVariables = { };
   };
 
   programs.gh = {
@@ -86,9 +78,7 @@
     enable = true;
     userName = "Kaidong Hu";
     userEmail = "hukaidonghkd@gmail.com";
-    attributes = [
-      "*.lock diff=binary"
-    ];
+    attributes = [ "*.lock binary" ];
     ignores = [
       # IntelliJ project files
       ".idea"
@@ -125,6 +115,7 @@
       merge.tool = "nvimdiff";
     };
   };
+
   # Stenography setup with Plover
   programs.plover = {
     enable = true;
@@ -225,7 +216,9 @@
     VISUAL = "nvim";
   };
 
-  home.sessionPath = [
-    "/home/kaidong/bin"
-  ];
+  home.shellAliases = {
+    vim = "nvim";
+  };
+
+  home.sessionPath = [ "/home/kaidong/bin" ];
 }
