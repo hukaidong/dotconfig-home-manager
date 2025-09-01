@@ -37,13 +37,15 @@
 
   # Packages installed to user environment
   home.packages = with pkgs; [
+    bat
+    nixfmt-rfc-style
+
     docker
     devcontainer
     texliveFull
 
     anki
-    bat
-    nixfmt-rfc-style
+    keepassxc
 
     python313
     python313Packages.pip
