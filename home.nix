@@ -52,6 +52,7 @@
     anki
     keepassxc
     claude-code
+    code-cursor
 
     python313
     python313Packages.pip
