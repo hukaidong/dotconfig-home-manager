@@ -119,6 +119,7 @@
       ".localfiles"
       ".lvimrc"
       ".envrc"
+      "result"
 
       # Git merges
       "*.orig"
