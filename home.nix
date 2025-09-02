@@ -44,6 +44,7 @@
     jq
     bat
     nixfmt-rfc-style
+    htop
 
     docker
     devcontainer
