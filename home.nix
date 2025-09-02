@@ -48,7 +48,6 @@
 
     docker
     devcontainer
-    texliveFull
 
     anki
     keepassxc
