@@ -8,11 +8,13 @@
     unzip
 
     # Development utilities
+    bat
+    fd
+    fzf
+    htop
+    jq
     nixfmt-rfc-style
     ripgrep
-    jq
-    bat
-    htop
 
     # Containerization
     docker
