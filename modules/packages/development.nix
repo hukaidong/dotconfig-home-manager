@@ -13,7 +13,6 @@
     fzf
     htop
     jq
-    nixfmt-rfc-style
     ripgrep
 
     # Containerization
