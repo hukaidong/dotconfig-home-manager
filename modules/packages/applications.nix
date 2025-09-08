@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nix-ai-tools, ... }:
 
 {
   home.packages = with pkgs; [
@@ -8,6 +8,7 @@
     zotero
 
     # Development IDEs and editors
+    nix-ai-tools.opencode
     claude-code
     code-cursor
   ];
