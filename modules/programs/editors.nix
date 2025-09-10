@@ -3,11 +3,9 @@
 {
   home.packages = with pkgs; [
     mu
-  ];
+    davmail
+    isync
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-git;
-    extraPackages = epkgs: [ epkgs.mu4e ];
-  };
+    ((emacsPackagesFor emacs-git).emacsWithPackages (epkgs: [ epkgs.mu4e ]))
+  ];
 }
