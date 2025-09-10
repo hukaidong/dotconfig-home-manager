@@ -6,6 +6,7 @@
     anki
     keepassxc
     zotero
+    thunderbird
 
     # Development IDEs and editors
     nix-ai-tools-pkgs.opencode
