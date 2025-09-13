@@ -1,6 +1,10 @@
 { pkgs, plover-flake, ... }:
 
 {
+  imports = [
+    plover-flake.homeManagerModules.plover # Plover stenography module
+  ];
+
   programs.plover = {
     enable = true;
 
