@@ -1,8 +1,6 @@
 { pkgs, plover-flake, ... }:
 
 {
-  imports = [ plover-flake.homeManagerModules.plover ];
-
   programs.plover = {
     enable = true;
 
