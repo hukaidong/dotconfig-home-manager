@@ -1,8 +1,6 @@
 { pkgs, plover-flake, ... }:
 
 {
-  imports = [ plover-flake.homeManagerModules.plover ];
-
   programs.plover = {
     enable = true;
 
@@ -11,7 +9,6 @@
       ps: with ps; [
         plover-lapwing-aio # Lapwing stenography theory
         plover-clippy-2
-        plover-uinput
       ]
     );
 

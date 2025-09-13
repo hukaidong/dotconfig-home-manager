@@ -39,8 +39,9 @@
 
         # Configuration modules
         modules = [ 
-          ./home.nix                            # Main home configuration
           plover-flake.homeManagerModules.plover # Plover stenography module
+
+          ./home.nix                            # Main home configuration
         ];
 
         # Pass flake inputs to home.nix for access to custom packages/configs

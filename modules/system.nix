@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, homePath, ... }:
 
 {
   # User identification and basic setup
   home.username = "kaidong";
-  home.homeDirectory = "/home/kaidong";
+  home.homeDirectory = "${homePath}/kaidong";
   home.stateVersion = "25.05";
 
   # Enable generic Linux compatibility (non-NixOS)
