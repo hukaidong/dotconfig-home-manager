@@ -1,4 +1,4 @@
-{ pkgs, nix-ai-tools-pkgs, ... }:
+{ pkgs, nix-ai-tools-pkgs, pkgs-unstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,6 +7,9 @@
     keepassxc
     zotero
     thunderbird
+
+    # Fast developing application using unstable packages
+    pkgs-unstable.code-cursor-fhs
 
     # Development IDEs and editors
     nix-ai-tools-pkgs.opencode
