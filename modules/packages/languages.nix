@@ -9,5 +9,7 @@
       ipython
       jupyter
     ]))
+
+    nodejs_latest
   ];
 }

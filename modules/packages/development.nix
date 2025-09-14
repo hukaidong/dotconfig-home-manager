@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     # Build tools
@@ -14,6 +13,7 @@
     htop
     jq
     ripgrep
+    tree
 
     # Containerization
     docker
