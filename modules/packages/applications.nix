@@ -7,6 +7,7 @@
     keepassxc
     zotero
     thunderbird
+    discord
 
     # Fast developing application using unstable packages
     pkgs-unstable.code-cursor-fhs
