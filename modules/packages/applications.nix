@@ -10,6 +10,7 @@
     discord
 
     # Fast developing application using unstable packages
+    pkgs-unstable.android-studio
     pkgs-unstable.code-cursor-fhs
 
     # Development IDEs and editors
