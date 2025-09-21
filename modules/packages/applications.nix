@@ -11,6 +11,7 @@
     anki
     keepassxc
     zotero
+    zathura
     thunderbird
     discord
     gimp3
