@@ -18,7 +18,6 @@
 
     # Fast developing application using unstable packages
     pkgs-unstable.android-studio
-    pkgs-unstable.code-cursor-fhs
     pkgs-unstable.jetbrains-toolbox
 
     # Development IDEs and editors
