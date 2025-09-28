@@ -6,6 +6,6 @@
     davmail
     isync
 
-    ((emacsPackagesFor emacs-git).emacsWithPackages (epkgs: [ epkgs.mu4e ]))
+    ((emacsPackagesFor emacs-unstable).emacsWithPackages (epkgs: [ epkgs.mu4e ]))
   ];
 }
