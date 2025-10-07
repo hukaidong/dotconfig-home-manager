@@ -7,10 +7,10 @@
   home.stateVersion = "25.05";
 
   # Enable generic Linux compatibility (non-NixOS)
-  targets.genericLinux.enable = true;
+  targets.genericLinux.enable = false;
 
   # Self-manage Home Manager
-  programs.home-manager.enable = true;
+  programs.home-manager.enable = false;
 
   # Package overlays and configuration
   nixpkgs.config = {
